@@ -1,0 +1,4 @@
+[
+    {"pumpName":"HAILEA-HX9980", "maxPumpFlowRate":650,"maxPumpFlowRateUnit":"Liter/Hour", "maxFlowHeight":12,"maxFlowHeightUnit":"Meter", "powerConsumption":8 },
+
+]

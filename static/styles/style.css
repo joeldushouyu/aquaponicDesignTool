@@ -1,0 +1,52 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the layout covers the full viewport height */
+  }
+  .sections-container {
+    display: flex;
+    flex-direction: row; /* Horizontal alignment of sections */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  }
+  .section {
+    padding: 20px;
+    box-sizing: border-box;
+    flex: 1;
+    min-width: 300px; /* Adjust the width as needed */
+  }
+  .section1 {
+    padding: 20px; /* Add padding to the section as needed */
+    background-color: #f0f0f0;
+  }
+  .section2 {
+    padding: 20px; /* Add padding to the section as needed */
+    background-color: #e0e0e0;
+  }
+  .section3 {
+    padding: 20px; /* Add padding to the section as needed */
+    background-color: #d0d0d0;
+  }
+  .section4 {
+    padding: 20px; /* Add padding to the section as needed */
+    background-color: #090606;
+  }
+  .section5 {
+    padding: 20px; /* Add padding to the section as needed */
+    background-color: #070606;
+  }
+  .section6 {
+    padding: 20px; /* Add padding to the section as needed */
+    background-color: #070606;
+  }
+  /* Media query for smaller screens */
+  @media (max-width: 768px) {
+    .sections-container {
+      flex-direction: column; /* Stack sections on smaller screens */
+    }
+    .section {
+      min-width: auto;
+    }
+  }

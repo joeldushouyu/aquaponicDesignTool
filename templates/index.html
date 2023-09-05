@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/styles/style.css">
+
+    <title>Hello, world!</title>
+
+
+    <style>
+        .center-label {
+            text-align: center;
+        }
+
+        .disabled-input {
+            background-color: #f5f5f5; /* Background color for disabled inputs */
+            color: #777; /* Text color for disabled inputs */
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="sections-container">
+
+        <div class="section section1">
+            <form>
+
+                <div class="form-row">
+                    <div class="form-row col-md-4">
+                        <label for="pumpType"> Pump Type</label>
+                        <select class="form-control" id="pumpType" size>
+                            <option> HAILEA-HX9980</option>
+                            <option> Generic Pump </option>
+                        </select>
+                    </div>
+
+                    <div class="form-row col-md-2">
+                        <label for="headHeight"> Head height</label>
+                        <input type="number" min="0" step="0.01" class="form-control" id="headHeight" placeholder="1.0">
+                    </div>
+                    <div class="form-row col-md-2">
+                        <label for="headHeightUnit">Unit </label>
+                        <select class="form-control" id="headHeightUnit" size>
+                            <option>Inch</option>
+                            <option>Meter</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="form-row" id="pumpExtraInfo">
+
+
+                    <div class="form-row col-md-2">
+                        <label for="pumpMaxFlowRate"> Max Flow </label>
+                        <input type="text" class="form-control" id="pumpMaxFlowRate" placeholder="0.0">
+                    </div>
+                    <div class="form-row col-md-2">
+                        <label for="pumpMaxFlowRateUnit">Unit </label>
+                        <select class="form-control" id="pumpMaxFlowRateUnit" size>
+                            <option>Gallon/Hour</option>
+                            <option>Liter/Hour</option>
+                        </select>
+                    </div>
+                    <div class="form-row col-md-2">
+                        <label for="pumpMaxFlowHeight"> Max Height</label>
+                        <input type="text" class="form-control" id="pumpMaxFlowHeight" placeholder="0.0">
+                    </div>
+                    <div class="form-row col-md-2">
+                        <label for="pumpMaxFlowHeightUnit">Unit </label>
+                        <select class="form-control" id="pumpMaxFlowHeightUnit" size>
+                            <option>Inch</option>
+                            <option>Meter</option>
+                        </select>
+                    </div>
+                    <div class="form-row col-md-4" style="margin-left: 20px;" >
+                        <label for="powerConsumption">Power (Watt) </label>
+                        <input type="text" class="form-control" id="powerConsumption" placeholder="0.0">
+                      </div>
+
+
+                </div>
+
+                <div class="form-group">
+
+                        <button onclick="sendPumpData(event)">Send Data</button>
+                        <label  class="form-check-label" id="pumpInfoMessage"></label>
+
+                </div>
+
+            </form>
+        </div>
+        <div class="section section2">
+            <div class="form-row">
+                <div class="form-row col-md-2">
+                    <label for="fishType"> Fish Type</label>
+                    <select class="form-control" id="fishType">
+                        <option> Catfish </option>
+                        <option> Other Fish </option>
+                    </select>
+                </div>
+                <div class="form-row col-md-4">
+                    <label for="fishNumber"> Fish Number</label>
+                    <input type="number" min="1" step="1" class="form-control" id="fishNumber" placeholder="1">
+                </div>
+                <div class="form-row col-md-4" id="fishMatureWeightDiv">
+                    <label for="fishMatureWeight"> Fish Mature Weight</label>
+                    <input type="number" min="0" step="0.01" class="form-control" id="fishMatureWeight" placeholder="1">
+                </div>
+            </div>
+            <div class="form-row">
+                <h3>or</h3>
+            </div>
+            <div class="form-row">
+                <div class="form-row col-md-4">
+                    <label for="fishTankSize"> Fish Tank Size</label>
+                    <input type="number" min="0" step="0.01" class="form-control" id="fishTankSize" placeholder="1.0">
+                </div>
+                <div class="form-row col-md-2">
+                    <label for="fishTankSizeUnit">Unit </label>
+                    <select class="form-control" id="fishTankSizeUnit" >
+                        <option>Gallon</option>
+                        <option>Liter</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <button onclick="resetFishInfoData(event)">Reset Input</button>
+                <button onclick="sendFishInfo(event)">Send Data</button>
+            </div>
+        </div>
+        <div class="section section3">
+            <div class="form-row">
+                <div class="form-row col-md-4">
+                    <label for="plantBedWidth"> Plant Bed Width</label>
+                    <input type="number" min="1" class="form-control" id="plantBedWidth" placeholder="1">
+                </div>
+                <div class="form-row col-md-2">
+                    <label for="plantBedWidthUnit">Unit </label>
+                    <select class="form-control" id="plantBedWidthUnit">
+                        <option>Inch</option>
+                        <option>Meter</option>
+                    </select>
+                </div>
+
+                <div class="form-row col-md-4">
+                    <label for="plantBedLength"> Plant Bed Length</label>
+                    <input type="number" min="1" class="form-control" id="plantBedLength" placeholder="1">
+                </div>
+                <div class="form-row col-md-2">
+                    <label for="plantBedLengthUnit">Unit </label>
+                    <select class="form-control" id="plantBedLengthUnit">
+                        <option>Inch</option>
+                        <option>Meter</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-row">
+                <div class="form-row col-md-4">
+                    <label for="plantBedDepth"> Plant Bed Depth</label>
+                    <input type="number" min="1" class="form-control" id="plantBedDepth" placeholder="1">   
+                </div>
+                <div class="form-row col-md-2">
+                    <label for="plantBedDepthUnit">Unit </label>
+                    <select class="form-control" id="plantBedDepthUnit">
+                        <option>Inch</option>
+                        <option>Meter</option>
+                    </select>
+                </div>
+                <div class="form-row col-md-4">
+                    <label for="plantBedNumber"> Number of Plant Bed</label>
+                    <input type="number" min="1" class="form-control" id="plantBedNumber" placeholder="1">   
+                </div>
+                
+
+            </div>
+
+
+                <div class="form-row">
+                    <button onclick="sendPlantInfo(event)">Send Data</button>
+                </div>
+        
+        </div>
+
+    </div>
+
+
+    <h1>Result</h1>
+    <div class="sections-container">
+        <div class="section section1" >
+            <table class="table table-bordered" id="pumpCalculationTable">
+                <thead>
+                  <tr>
+                    <th scope="col"># [assume matured fish weight 3 kg]</th>
+                    <th scope="col">Min</th>
+                    <th scope="col"></th>
+                    <th scope="col">Max</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Fish Tank Size (Liter)</th>
+                    <td></td>
+                    <td>value</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Fish Number </th>
+                    <td></td>
+                    <td>value</td>
+                    <td></td>
+                  </tr>                
+                  <tr>
+                    <th scope="row">Total Plant Bed Surface Area (m^2) </th>
+                    <td></td>
+                    <td>value</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Total Plant Bed Volume (m^3) </th>
+                    <td></td>
+                    <td>value</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Max Flow Rate from Pump</th>
+                    <td></td>
+                    <td>value</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <div class="section section2">
+            <table class="table table-bordered" id="fishCalculationTable">
+                <thead>
+                  <tr>
+                    <th scope="col"># [assume matured fish weight 3 kg]</th>
+                    <th scope="col">Min</th>
+                    <th scope="col"></th>
+                    <th scope="col">Max</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Fish Tank Size (Liter)</th>
+                        <td></td>
+                        <td>value</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Fish Number </th>
+                        <td></td>
+                        <td>value</td>
+                        <td></td>
+                      </tr>                
+                      <tr>
+                        <th scope="row">Total Plant Bed Surface Area (m^2)</th>
+                        <td></td>
+                        <td>value</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Total Plant Bed Volume (m^3)</th>
+                        <td></td>
+                        <td>value</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Max Flow Rate from Pump</th>
+                        <td></td>
+                        <td>value</td>
+                        <td></td>
+                      </tr>
+                </tbody>
+              </table>
+        </div>
+        <div class="section section3">
+            <table class="table table-bordered" id="plantCalculationTable">
+                <thead>
+                    <tr>
+                      <th scope="col"># [assume matured fish weight 3 kg]</th>
+                      <th scope="col">Min</th>
+                      <th scope="col"></th>
+                      <th scope="col">Max</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <th scope="row">Fish Tank Size (Liter)</th>
+                          <td></td>
+                          <td>value</td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Fish Number </th>
+                          <td></td>
+                          <td>value</td>
+                          <td></td>
+                        </tr>                
+                        <tr>
+                          <th scope="row">Total Plant Bed Surface Area (m^2)</th>
+                          <td></td>
+                          <td>value</td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Total Plant Bed Volume (m^3)</th>
+                          <td></td>
+                          <td>value</td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Max Flow Rate from Pump</th>
+                          <td></td>
+                          <td>value</td>
+                          <td></td>
+                        </tr>
+                  </tbody>
+              </table>
+        </div>
+
+
+    </div>
+
+
+    <script type="text/javascript" src="/static/scripts/waterSystem.js" ></script>
+    <script type="text/javascript" src="/static/scripts/fishTankSystem.js"></script>
+    <script type="text/javascript" src="/static/scripts/plantSystem.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="/static/scripts/sendHttpRequest.js" ></script>
+    <script>
+        // Get references to the input fields
+        
+        
+    </script>
+</body>
+
+</html>
